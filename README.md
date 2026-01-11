@@ -29,11 +29,7 @@ pnpm dev
 
 See `nextjs/README.md` for detailed setup instructions.
 
-### Angular Template (Coming Soon)
-
-Located in `angular/` (in development)
-
-## Development Workflow
+ ## Development Workflow
 
 Each template is a standalone application:
 
