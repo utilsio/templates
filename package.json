@@ -1,29 +1,15 @@
 {
-  "name": "utilsio-nextjs-template",
+  "name": "@utilsio/templates",
   "version": "0.1.0",
+  "description": "Official Utilsio templates for multiple frameworks",
   "private": true,
-  "scripts": {
-    "dev": "bun --bun next dev -p 3001",
-    "build": "bun --bun next build",
-    "start": "bun --bun next start -p 3001",
-    "lint": "bun --bun eslint",
-    "setup:local": "sed -i '' 's/\"@utilsio\\/react\": \"^0.1.0\"/\"@utilsio\\/react\": \"workspace:*\"/g' package.json && bun install"
-  },
-  "dependencies": {
-    "@utilsio/react": "^0.1.0",
-    "next": "16.1.1",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.1",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+  "workspaces": [
+    "nextjs",
+    "angular"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/utilsio/templates.git"
   }
 }

@@ -6,19 +6,53 @@ Official starter templates for integrating Utilsio crypto subscriptions into you
 
 ### Next.js 16 Template
 
-Located in , this template demonstrates:
+A complete Next.js application demonstrating Utilsio integration.
 
-- 🔐 **Seamless Authentication** - Uses hidden iframe pattern for cross-domain auth
-- 💳 **One-Click Subscriptions** - Subscribe with POL tokens (Polygon)
-- ⚡ **Daily Billing** - Powered by Superfluid money streams
-- 🎨 **Clean UI** - Built with Next.js 16 and Tailwind CSS
+- **Location:** `nextjs/`
+- **Features:**
+  - 🔐 Seamless Authentication - Hidden iframe pattern for cross-domain auth
+  - 💳 One-Click Subscriptions - Subscribe with POL tokens (Polygon)
+  - ⚡ Daily Billing - Powered by Superfluid money streams
+  - 🎨 Clean UI - Built with Next.js 16 and Tailwind CSS
 
-### Getting Started
+**Getting Started:**
+```bash
+cd nextjs
+pnpm install
+# npm install
+# bun install
 
-1. Navigate to the template directory: `cd nextjs`
-2. Follow the instructions in the template README
-3. Install dependencies and configure environment variables
-4. Run `bun dev` to start development
+pnpm dev
+# npm run dev
+# bun dev
+```
+
+See `nextjs/README.md` for detailed setup instructions.
+
+### Angular Template (Coming Soon)
+
+Located in `angular/` (in development)
+
+## Development Workflow
+
+Each template is a standalone application:
+
+```bash
+# Navigate to template
+cd nextjs
+
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Run production build
+pnpm start
+```
 
 ## Resources
 
