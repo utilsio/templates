@@ -4,8 +4,7 @@
   "description": "Official Utilsio templates for multiple frameworks",
   "private": true,
   "workspaces": [
-    "nextjs",
-    "angular"
+    "nextjs"
   ],
   "license": "Apache-2.0",
   "repository": {
