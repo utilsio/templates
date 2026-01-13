@@ -11,7 +11,7 @@
     "use:npm": "sed -i '' 's/\"@utilsio\\/react\": \"workspace:\\*\"/\"@utilsio\\/react\": \">=0.1.0\"/g' package.json"
   },
   "dependencies": {
-    "@utilsio/react": ">=0.1.0",
+    "@utilsio/react": "file:./utilsio-react-latest.tgz",
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3"
