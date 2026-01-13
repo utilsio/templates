@@ -1,9 +1,11 @@
 import type {NextConfig} from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
 	reactCompiler: false,
 	turbopack: {
-		root: __dirname,
+		// Point to monorepo root where dependencies are hoisted
+		root: path.resolve(__dirname, "../../"),
 	},
 };
 

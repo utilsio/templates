@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "bun --bun next dev -p 3001",
-    "build": "bun --bun next build",
+    "build": "bun run use:npm && bun --bun next build",
     "start": "bun --bun next start -p 3001",
     "lint": "bun --bun eslint",
-    "setup:local": "sed -i '' 's/\"@utilsio\\/react\": \"^0.1.0\"/\"@utilsio\\/react\": \"workspace:*\"/g' package.json && bun install"
+    "use:local": "sed -i '' 's/\"@utilsio\\/react\": \".*\"/\"@utilsio\\/react\": \"workspace:*\"/g' package.json && cd ../../ && bun install",
+    "use:npm": "sed -i '' 's/\"@utilsio\\/react\": \"workspace:\\*\"/\"@utilsio\\/react\": \">=0.1.0\"/g' package.json"
   },
   "dependencies": {
-    "@utilsio/react": "^0.1.0",
+    "@utilsio/react": ">=0.1.0",
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3"

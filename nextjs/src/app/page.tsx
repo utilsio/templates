@@ -104,7 +104,7 @@ function SubscribeButton() {
 								</div>
 							)}
 							<div className="text-sm">
-								<span className="font-semibold">User ID:</span> {user.id.slice(0, 8)}...
+								<span className="font-semibold">User ID:</span> {user.id}...
 							</div>
 						</div>
 					)}
@@ -155,7 +155,7 @@ function SubscribeButton() {
 							</div>
 						)}
 						<div className="text-sm">
-							<span className="font-semibold">User ID:</span> {user.id.slice(0, 8)}...
+							<span className="font-semibold">User ID:</span> {user.id}...
 						</div>
 					</div>
 				)}
