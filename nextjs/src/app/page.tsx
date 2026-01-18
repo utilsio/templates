@@ -41,7 +41,7 @@ function SubscribeButton() {
 
 	if (loading) {
 		return (
-			<div className="flex items-center justify-center min-h-screen">
+			<div className="flex items-center justify-center min-h-dvh">
 				<div className="text-center">
 					<div className="mb-4 text-lg">Loading...</div>
 				</div>
@@ -51,7 +51,7 @@ function SubscribeButton() {
 
 	if (error) {
 		return (
-			<div className="flex items-center justify-center min-h-screen">
+			<div className="flex items-center justify-center min-h-dvh">
 				<div className="text-center">
 					<div className="mb-4 text-lg text-red-500">Error: {error}</div>
 				</div>
@@ -65,7 +65,7 @@ function SubscribeButton() {
 		const loginUrl = `${utilsioUrl}/auth?next=${encodeURIComponent(appUrl)}`;
 
 		return (
-			<div className="flex items-center justify-center min-h-screen">
+			<div className="flex items-center justify-center min-h-dvh">
 				<div className="text-center">
 					<h1 className="mb-4 text-2xl font-bold">Please Log In</h1>
 					<p className="mb-4 text-gray-600">
@@ -88,7 +88,7 @@ function SubscribeButton() {
 		const startDate = new Date(currentSubscription.createdAt).toLocaleDateString();
 
 		return (
-			<div className="flex items-center justify-center min-h-screen">
+			<div className="flex items-center justify-center min-h-dvh">
 				<div className="text-center max-w-md">
 					<h1 className="mb-6 text-2xl font-bold">Active Subscription</h1>
 
@@ -139,7 +139,7 @@ function SubscribeButton() {
 	}
 
 	return (
-		<div className="flex items-center justify-center min-h-screen">
+		<div className="flex items-center justify-center min-h-dvh">
 			<div className="text-center max-w-md">
 				<h1 className="mb-6 text-3xl font-bold">utilsio React SDK Demo</h1>
 				
