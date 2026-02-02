@@ -1,6 +1,6 @@
 "use client";
 
-import {UtilsioProvider, useUtilsio} from "@utilsio/react/client";
+import {useUtilsio} from "@utilsio/react/client";
 import {useCallback, useState} from "react";
 
 function SubscribeButton() {
@@ -174,36 +174,6 @@ function SubscribeButton() {
 	);
 }
 
-async function getAuthHeaders({
-	deviceId,
-	additionalData,
-}: {
-	deviceId: string;
-	additionalData?: string;
-}) {
-	const response = await fetch("/api/sign", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({deviceId, additionalData}),
-	});
-
-	if (!response.ok) {
-		throw new Error(`Failed to get auth headers: ${response.statusText}`);
-	}
-
-	return response.json();
-}
-
 export default function HomePage() {
-	return (
-		<UtilsioProvider
-			utilsioBaseUrl={process.env.NEXT_PUBLIC_UTILSIO_APP_URL!}
-			appId={process.env.NEXT_PUBLIC_UTILSIO_APP_ID!}
-			getAuthHeadersAction={getAuthHeaders}
-		>
-			<SubscribeButton />
-		</UtilsioProvider>
-	);
+	return <SubscribeButton />;
 }
