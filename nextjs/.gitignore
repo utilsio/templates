@@ -1,3 +1,6 @@
+# Remove the placeholder on commit
+src/lib/supabase.ts
+
 # Dependencies
 node_modules/
 .pnp

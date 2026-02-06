@@ -15,7 +15,7 @@ function SubscribeButton() {
 		redirectToConfirm({
 			appId,
 			appName: "Demo App",
-			amountPerDay: "0.033333", // 1 POL per month
+			amountPerDay: "1", // 1 POL per day (~30 POL per month)
 			appUrl,
 			nextSuccess: `${appUrl}/success`,
 			nextCancelled: `${appUrl}/cancelled`,
