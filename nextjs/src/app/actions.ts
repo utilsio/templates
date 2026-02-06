@@ -1,24 +1,23 @@
 "use server";
 
-export async function getAuthHeadersAction({
-	                              deviceId,
-	                              additionalData,
-                              }: {
-	deviceId: string;
-	additionalData?: string;
-}) {
-	const APP_URL = process.env.NEXT_PUBLIC_APP_URL!;
-	const response = await fetch(`${APP_URL}/api/sign`, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ deviceId, additionalData }),
+import {deriveAppHashHex, signRequest} from "@utilsio/react/server";
+
+// Derive the HMAC key once at module load (expensive operation)
+const appHashHex = deriveAppHashHex({
+	appSecret: process.env.UTILSIO_APP_SECRET!,
+	salt: process.env.UTILSIO_APP_SALT!,
+});
+
+export async function getAuthHeadersAction(input: {deviceId: string; additionalData?: string}) {
+	const timestamp = Date.now();
+
+	const signature = signRequest({
+		appHashHex,
+		deviceId: input.deviceId,
+		appId: process.env.NEXT_PUBLIC_UTILSIO_APP_ID!,
+		timestamp,
+		additionalData: input.additionalData,
 	});
 
-	if (!response.ok) {
-		throw new Error(`Failed to get auth headers: ${response.statusText}`);
-	}
-
-	return response.json();
+	return {signature, timestamp: String(timestamp)};
 }

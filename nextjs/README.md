@@ -111,7 +111,7 @@ Safari blocks third-party cookies in iframes, preventing the SDK from reading de
 
 **Subscribe Flow:**
 1. User clicks subscribe in Safari (no deviceId available)
-2. SDK redirects to utilsio.dev/subscribe/init which reads deviceId from first-party cookies
+2. SDK redirects to utilsio.dev/subscription/init which reads deviceId from first-party cookies
 3. utilsio.dev calls your `/api/signature-callback` endpoint (server-to-server)
 4. Your server generates signature using the app secret
 5. utilsio.dev redirects to confirmation page with signature
