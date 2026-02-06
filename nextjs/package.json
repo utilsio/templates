@@ -8,22 +8,22 @@
     "start": "bun --bun next start -p 3001",
     "lint": "bun --bun eslint",
     "use:local": "sed -i '' 's/\"@utilsio\\/react\": \".*\"/\"@utilsio\\/react\": \"workspace:*\"/g' package.json && cd ../../ && bun install",
-    "use:npm": "sed -i '' 's/\"@utilsio\\/react\": \"workspace:\\*\"/\"@utilsio\\/react\": \">=0.1.0\"/g' package.json"
+    "use:npm": "sed -i '' 's/\"@utilsio\\/react\": \"workspace:\\*\"/\"@utilsio\\/react\": \"latest\"/g' package.json"
   },
   "dependencies": {
-    "@utilsio/react": ">=0.1.0",
-    "next": "16.1.5",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "@utilsio/react": "latest",
+    "next": "16.1.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^25",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
-    "eslint-config-next": "16.1.1",
+    "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
