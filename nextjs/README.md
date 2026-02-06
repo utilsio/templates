@@ -101,6 +101,36 @@ pnpm start
 # or: bun run start
 ```
 
+## Safari Compatibility
+
+The template includes a `/api/signature-callback` endpoint that enables subscription flows in Safari and other browsers that block third-party cookies.
+
+### How It Works
+
+1. User clicks subscribe in Safari (no deviceId available due to cookie blocking)
+2. Redirects to utilsio.dev which reads deviceId from first-party cookies
+3. utilsio.dev calls your `/api/signature-callback` endpoint (server-to-server)
+4. Your server generates signature using the app secret
+5. utilsio.dev redirects to confirmation page with signature
+
+### Security
+
+The callback endpoint:
+- Validates the origin header (`X-utilsio-Origin: utilsio.dev`)
+- Requires HTTPS in production
+- Validates timestamp is recent (within 10 seconds) to prevent replay attacks
+- Uses the same signature logic as direct subscribe flows
+- Keeps your app secret secure on your server
+
+### Endpoint Location
+
+The signature callback is automatically included in this template:
+- **Path:** `/api/signature-callback/route.ts`
+- **Method:** POST
+- **Called by:** utilsio.dev (server-to-server only)
+
+No additional configuration needed - it works out of the box!
+
 ## Resources
 
 - [utilsio Documentation](https://utilsio.dev/docs)
