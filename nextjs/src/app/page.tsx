@@ -30,7 +30,8 @@ function SubscribeButton() {
 		setCancelling(true);
 
 		try {
-			await cancelSubscription([currentSubscription.id]);
+			const appUrl = process.env.NEXT_PUBLIC_APP_URL!;
+			await cancelSubscription([currentSubscription.id], appUrl);
 			// refresh() is called inside cancelSubscription, component re-renders automatically
 		} catch (err) {
 			setCancelError(err instanceof Error ? err.message : String(err));

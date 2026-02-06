@@ -103,15 +103,46 @@ pnpm start
 
 ## Safari Compatibility
 
-The template includes a `/api/signature-callback` endpoint that enables subscription flows in Safari and other browsers that block third-party cookies.
+The template includes a `/api/signature-callback` endpoint that enables both subscription and cancellation flows in Safari and other browsers that block third-party cookies.
 
 ### How It Works
 
-1. User clicks subscribe in Safari (no deviceId available due to cookie blocking)
-2. Redirects to utilsio.dev which reads deviceId from first-party cookies
+Safari blocks third-party cookies in iframes, preventing the SDK from reading deviceId. The solution uses server-side signature generation:
+
+**Subscribe Flow:**
+1. User clicks subscribe in Safari (no deviceId available)
+2. SDK redirects to utilsio.dev/subscribe/init which reads deviceId from first-party cookies
 3. utilsio.dev calls your `/api/signature-callback` endpoint (server-to-server)
 4. Your server generates signature using the app secret
 5. utilsio.dev redirects to confirmation page with signature
+
+**Cancel Flow:**
+1. User clicks cancel in Safari (no deviceId available)
+2. SDK makes DELETE request without deviceId/signature, includes signatureCallbackUrl
+3. utilsio.dev reads deviceId from first-party cookies
+4. utilsio.dev calls your `/api/signature-callback` endpoint (server-to-server)
+5. Your server generates signature using the app secret
+6. utilsio.dev verifies signature and deletes subscription
+
+### Implementation
+
+**In your component:**
+```tsx
+const {redirectToConfirm, cancelSubscription} = useUtilsio();
+
+// Subscribe - pass appUrl for Safari support
+redirectToConfirm({
+  appId,
+  appName: "Demo App",
+  amountPerDay: "1",
+  appUrl: process.env.NEXT_PUBLIC_APP_URL,
+  nextSuccess: `${appUrl}/success`,
+  nextCancelled: `${appUrl}/cancelled`,
+});
+
+// Cancel - pass appUrl for Safari support
+await cancelSubscription([subscriptionId], process.env.NEXT_PUBLIC_APP_URL);
+```
 
 ### Security
 
@@ -119,7 +150,7 @@ The callback endpoint:
 - Validates the origin header (`X-utilsio-Origin: utilsio.dev`)
 - Requires HTTPS in production
 - Validates timestamp is recent (within 10 seconds) to prevent replay attacks
-- Uses the same signature logic as direct subscribe flows
+- Verifies appId matches your configured app
 - Keeps your app secret secure on your server
 
 ### Endpoint Location
@@ -128,6 +159,7 @@ The signature callback is automatically included in this template:
 - **Path:** `/api/signature-callback/route.ts`
 - **Method:** POST
 - **Called by:** utilsio.dev (server-to-server only)
+- **Handles:** Both subscribe and cancel flows
 
 No additional configuration needed - it works out of the box!
 

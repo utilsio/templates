@@ -12,10 +12,14 @@ const appHashHex = deriveAppHashHex({
 
 /**
  * POST /api/signature-callback
- * Server-to-server callback from utilsio.dev for Safari-compatible subscribe flow
+ * Server-to-server callback from utilsio.dev for Safari-compatible flows
  *
- * This endpoint receives deviceId and subscription params from utilsio.dev
+ * This endpoint receives deviceId and request params from utilsio.dev
  * and generates a signature using the app secret.
+ *
+ * Used for both:
+ * - Subscribe flow (additionalData = amountPerDay)
+ * - Cancel flow (additionalData = sorted subscriptionIds joined by comma)
  *
  * Security:
  * - Validates X-utilsio-Origin header
@@ -25,7 +29,7 @@ const appHashHex = deriveAppHashHex({
  * Body: {
  *   deviceId: string,
  *   appId: string,
- *   amountPerDay: string,
+ *   additionalData: string,
  *   timestamp: number
  * }
  *
@@ -54,16 +58,16 @@ export async function POST(req: NextRequest) {
 
 		// Parse and validate request body
 		const body = await req.json();
-		const {deviceId, appId, amountPerDay, timestamp} = body as {
+		const {deviceId, appId, additionalData, timestamp} = body as {
 			deviceId: string;
 			appId: string;
-			amountPerDay: string;
+			additionalData: string;
 			timestamp: number;
 		};
 
-		if (!deviceId || !appId || !amountPerDay || !timestamp) {
+		if (!deviceId || !appId || !additionalData || !timestamp) {
 			return NextResponse.json(
-				{error: "Missing required fields: deviceId, appId, amountPerDay, timestamp"},
+				{error: "Missing required fields: deviceId, appId, additionalData, timestamp"},
 				{status: 400}
 			);
 		}
@@ -89,7 +93,7 @@ export async function POST(req: NextRequest) {
 			deviceId,
 			appId,
 			timestamp,
-			additionalData: amountPerDay,
+			additionalData,
 		});
 
 		console.log("Generated signature for server-to-server callback:", {
