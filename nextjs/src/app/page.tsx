@@ -15,7 +15,7 @@ function SubscribeButton() {
 		redirectToConfirm({
 			appId,
 			appName: "Demo App",
-			amountPerDay: "1", // 1 POL per day (~30 POL per month)
+			amountPerDay: "0.1", // 0.1 POL per day (~3 POL per month)
 			appUrl,
 			nextSuccess: `${appUrl}/success`,
 			nextCancelled: `${appUrl}/cancelled`,
@@ -102,7 +102,7 @@ function SubscribeButton() {
 				<h1 className="mb-6 text-3xl font-bold">utilsio React SDK Demo</h1>
 
 				<p className="mb-8 text-gray-600">
-					Subscribe to this demo app for 1 POL per day
+					Subscribe to this demo app for 0.1 POL per day
 				</p>
 				<button
 					onClick={handleSubscribe}
