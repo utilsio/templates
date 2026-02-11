@@ -9,7 +9,7 @@ const appHashHex = deriveAppHashHex({
 });
 
 export async function getAuthHeadersAction(input: {deviceId: string; additionalData?: string}) {
-	const timestamp = Date.now();
+	const timestamp = Math.floor(Date.now() / 1000);
 
 	const signature = signRequest({
 		appHashHex,

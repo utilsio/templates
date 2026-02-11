@@ -2,7 +2,7 @@ import {NextRequest, NextResponse} from "next/server";
 import {deriveAppHashHex, signRequest} from "@utilsio/react/server";
 
 // Constants
-const TIMESTAMP_VALIDITY_WINDOW_MS = 10000; // 10 seconds
+const TIMESTAMP_VALIDITY_WINDOW_SECONDS = 60; // 60 seconds
 
 // Derive the hash once at module load time
 const appHashHex = deriveAppHashHex({
@@ -23,7 +23,7 @@ const appHashHex = deriveAppHashHex({
  *
  * Security:
  * - Validates X-utilsio-Origin header
- * - Validates timestamp is recent (within 10 seconds)
+ * - Validates timestamp is recent (within 60 seconds)
  * - Requires HTTPS in production
  *
  * Body: {
@@ -72,10 +72,10 @@ export async function POST(req: NextRequest) {
 			);
 		}
 
-		// Validate timestamp is recent (within 10 seconds)
-		const now = Date.now();
+		// Validate timestamp is recent (within 60 seconds)
+		const now = Math.floor(Date.now() / 1000);
 		const timestampAge = Math.abs(now - timestamp);
-		if (timestampAge > TIMESTAMP_VALIDITY_WINDOW_MS) {
+		if (timestampAge > TIMESTAMP_VALIDITY_WINDOW_SECONDS) {
 			console.error("Timestamp too old or in future:", {timestamp, now, age: timestampAge});
 			return NextResponse.json({error: "Invalid timestamp"}, {status: 400});
 		}
