@@ -7,7 +7,7 @@
     "build": "bun run use:npm && bun --bun next build",
     "start": "bun --bun next start -p 3001",
     "lint": "bun --bun eslint",
-    "use:local": "sed -i '' 's/\"@utilsio\\/react\": \".*\"/\"@utilsio\\/react\": \"workspace:*\"/g' package.json && cd ../../ && bun install",
+    "use:local": "cd ../../packages/react && bun run update-template",
     "use:npm": "sed -i '' 's/\"@utilsio\\/react\": \"workspace:\\*\"/\"@utilsio\\/react\": \"latest\"/g' package.json"
   },
   "dependencies": {

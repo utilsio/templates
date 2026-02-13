@@ -12,7 +12,7 @@ fi
 
 TEMPLATE_NAME="$1"
 TEMPLATE_DIR="$TEMPLATE_NAME"
-COMMIT_MSG="chore: prepare $TEMPLATE_NAME template for release"
+COMMIT_MSG="chore: release $TEMPLATE_NAME template"
 
 # Validate template directory
 if [ ! -d "$TEMPLATE_DIR" ]; then
@@ -31,20 +31,15 @@ echo "================================================"
 
 # Step 1: Run prebuild
 echo ""
-echo "Step 1/3: Running prebuild script..."
+echo "Step 1/2: Running prebuild script..."
 cd "$TEMPLATE_DIR"
 chmod +x prebuild.sh
 ./prebuild.sh
 cd ..
 
-# Step 2: Git status (informational only)
+# Step 2: Stage + commit
 echo ""
-echo "Step 2/3: Git status (template only)"
-git status --short "$TEMPLATE_DIR"
-
-# Step 3: Stage + commit
-echo ""
-echo "Step 3/3: Committing release changes..."
+echo "Step 2/2: Committing release changes..."
 git add "$TEMPLATE_DIR"
 
 # Abort if nothing changed
