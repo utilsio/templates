@@ -11,7 +11,7 @@ A complete Next.js application demonstrating Utilsio integration.
 - **Location:** `nextjs/`
 - **Features:**
   - 🔐 Seamless Authentication - Hidden iframe pattern for cross-domain auth
-  - 💳 One-Click Subscriptions - Subscribe with POL tokens (Polygon)
+  - 💳 One-Click Subscriptions - Subscribe with USDT (Polygon) stablecoin
   - ⚡ Daily Billing - Powered by Superfluid money streams
   - 🎨 Clean UI - Built with Next.js 16 and Tailwind CSS
 

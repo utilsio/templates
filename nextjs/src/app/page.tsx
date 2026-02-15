@@ -15,7 +15,7 @@ function SubscribeButton() {
 		redirectToConfirm({
 			appId,
 			appName: "Demo App",
-			amountPerDay: "0.1", // 0.1 POL per day (~3 POL per month)
+			amountPerDay: "0.01", // 0.01 USD per day (~0.3 USD per month)
 			appUrl,
 			nextSuccess: `${appUrl}/success`,
 			nextCancelled: `${appUrl}/cancelled`,
@@ -70,10 +70,10 @@ function SubscribeButton() {
 					<div className="mb-6 p-4 border border-white rounded-lg text-left space-y-2">
 						<h2 className="font-semibold text-lg mb-2">Subscription</h2>
 						<div>
-							<span className="font-semibold">Per day:</span> {currentSubscription.amountPerDay} POL
+							<span className="font-semibold">Per day:</span> {currentSubscription.amountPerDay} USD
 						</div>
 						<div>
-							<span className="font-semibold">Per month:</span> ~{amountPerMonth} POL
+							<span className="font-semibold">Per month:</span> ~{amountPerMonth} USD
 						</div>
 						<div>
 							<span className="font-semibold">Started:</span> {startDate}
@@ -102,7 +102,7 @@ function SubscribeButton() {
 				<h1 className="mb-6 text-3xl font-bold">utilsio React SDK Demo</h1>
 
 				<p className="mb-8 text-gray-600">
-					Subscribe to this demo app for 0.1 POL per day
+					Subscribe to this demo app for 0.01 USD per day
 				</p>
 				<button
 					onClick={handleSubscribe}
